@@ -1,18 +1,22 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
-    namespace 'com.example.baralarska_prace_android_front_end'
-    compileSdk 32
+    namespace 'cz.cvut.fel.lushnalv'
+    compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.baralarska_prace_android_front_end"
-        minSdk 23
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        applicationId "cz.cvut.fel.lushnalv"
+        minSdk 26
+        targetSdk 33
+        versionCode 4
+        versionName "1.03"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -37,7 +41,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.1.1'
+        kotlinCompilerExtensionVersion '1.3.2'
     }
     packagingOptions {
         resources {
@@ -49,15 +53,139 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     implementation 'androidx.activity:activity-compose:1.3.1'
+    implementation "androidx.compose.material:material:1.2.1"
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation 'androidx.compose.material3:material3:1.0.0-alpha02'
+    implementation 'androidx.wear.compose:compose-material:1.0.0-alpha19'
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
+
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
+
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    //Testing compose
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$compose_version")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_version")
+
+    //Navigation
+    implementation 'androidx.navigation:navigation-compose:2.5.1'
+    implementation "com.google.accompanist:accompanist-navigation-animation:0.16.0"
+
+    //Coil
+    implementation "io.coil-kt:coil-compose:2.2.0"
+
+    // ConstraintLayout
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+
+    //Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    //ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1'
+    implementation 'androidx.compose.runtime:runtime:1.2.1'
+    implementation 'androidx.compose.runtime:runtime-livedata:1.2.1'
+    implementation 'androidx.compose.runtime:runtime-rxjava2:1.2.1'
+
+    kapt 'androidx.room:room-compiler:2.4.3'
+
+    implementation "com.google.dagger:hilt-android:2.42"
+    kapt "com.google.dagger:hilt-compiler:2.42"
+
+    //Map
+    implementation 'com.google.maps.android:maps-compose:2.7.2'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
+    //Room Database
+    implementation "androidx.room:room-runtime:2.4.3"
+    implementation "androidx.room:room-ktx:2.4.3"
+    annotationProcessor "androidx.room:room-compiler:2.4.3"
+
+    //Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation "com.squareup.retrofit2:converter-jackson:2.9.0"
+
+    //Json and GeoJson
+    implementation 'de.grundid.opendatalab:geojson-jackson:1.6'
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0"
+
+    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+
+    //Permissions
+    implementation "com.google.accompanist:accompanist-permissions:0.23.1"
+
+    //Wheel picker
+    implementation "com.chargemap.compose:numberpicker:1.0.3"
+
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.4"
+
+    //Swipe refresh
+    implementation "com.google.accompanist:accompanist-swiperefresh:0.27.0"
+    implementation "com.google.accompanist:accompanist-pager:0.27.0"
+
+    //Google Auth
+    implementation 'com.google.android.gms:play-services-auth:20.3.0'
+
+
+    implementation('com.squaredem:composecalendar:1.0.4') {
+        exclude group: 'androidx.compose.ui', module: 'ui'
+        exclude group: 'androidx.compose.ui', module: 'ui-tooling-preview'
+        exclude group: 'androidx.compose.runtime', module: 'runtime'
+        exclude group: 'androidx.compose.material3', module: 'material3'
+    }
+
+
+    //For photo picker
+//    implementation ('com.himanshoe:pluck:1.0.0'){
+//        exclude group: 'androidx.compose.ui', module: 'ui'
+//        exclude group: 'androidx.compose.ui', module: 'ui-tooling-preview'
+//        exclude group: 'androidx.compose.runtime', module: 'runtime'
+//        exclude group: 'androidx.compose.material3', module: 'material3'
+//    }
+
+
+//
+//    implementation("su.kore:pluck:1.0.0-RC2-krd")
+
+    //Fresco image loader
+// compose image loading
+//    implementation 'com.facebook.fresco:fresco:2.6.0'
+//    implementation 'com.facebook.fresco:animated-gif:2.6.0'
+//
+//    // For WebP support, including animated WebP
+//    implementation 'com.facebook.fresco:animated-webp:2.6.0'
+//    implementation 'com.facebook.fresco:webpsupport:2.6.0'
+//
+//    // For WebP support, without animations
+//    implementation 'com.facebook.fresco:webpsupport:2.6.0'
+//
+//    implementation "com.facebook.fresco:imagepipeline-okhttp3:2.6.0"
+
+
 }
+
+
+
+
+
+
+
+
+
