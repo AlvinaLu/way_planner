@@ -20,7 +20,7 @@ Backend API for project: https://github.com/AlvinaLu/way_planner_back_end
 * Firebase Storage
 
 <p align="center">
-  <img src="https://firebasestorage.googleapis.com/v0/b/wayplanner.appspot.com/o/Helpers%2Fnp1.png?alt=media&token=fe7abaa7-f206-4cfd-858f-ef5e73233237" width="800" title="Auth and main screen">
+  <img src="https://github.com/AlvinaLu/way_planner/blob/master/Screenshot_2022-12-18-23-57-53-789_cz.cvut.fel.lushnalv.jpg" width="800" title="Auth and main screen">
 </p>
 <hr>
 <p align="center">
